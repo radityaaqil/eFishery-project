@@ -1,0 +1,25 @@
+POST http://localhost:5000/signup HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"test",
+    "email":"test2@gmail.com",
+    "password":"passwordnyabaru"
+}
+
+###
+
+POST http://localhost:5000/signin HTTP/1.1
+Content-Type: application/json
+
+{
+    "username":"test",
+    "email":"test2@gmail.com",
+    "password":"passwordnyabaru"
+}
+
+###
+
+GET http://localhost:5000/user/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjI0MDY2OTcsImlkIjozfQ.cRbZwDV-csJsHGLJr-tEw5SGnwtNy7SRDIEozOkxpWM
