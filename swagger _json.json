@@ -1,0 +1,1316 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation for eFishery Project Assessment",
+    "version": "1.0",
+    "title": "eFishery Project",
+    "contact": {
+      "name": "Raditya Aqil Mahardhika",
+      "email": "radityaaqil@gmail.com"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "securityDefinitions": {},
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/signup": {
+      "post": {
+        "summary": "REGISTER NEW USER",
+        "tags": [
+          "User"
+        ],
+        "operationId": "POSTREGISTER",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/POSTREGISTERREQUEST"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/POSTSUCCESS"
+            },
+            "examples": {
+              "application/json; charset=UTF-8": {
+                "id": 5,
+                "username": "ozzyosbourne",
+                "email": "ozzy@gmail.com"
+              }
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 08:34:39 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "60"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "application/json; charset=UTF-8": "\"Please insert different email\""
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 08:43:00 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "32"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signin": {
+      "post": {
+        "summary": "LOGIN EXISTING USER",
+        "tags": [
+          "User"
+        ],
+        "operationId": "POSTLOGIN",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/POSTLOGINREQUEST"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/LOGINSUCCESS"
+            },
+            "examples": {
+              "application/json; charset=UTF-8": {
+                "id": 5,
+                "username": "ozzyosbourne",
+                "email": "ozzy@gmail.com"
+              }
+            },
+            "headers": {
+              "Authorization": {
+                "type": "string",
+                "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjI3MTcwNzQsImlkIjo1fQ.vNl8G__HryTUwisJrI6d0ZrtEzVp3i5jaNKoEzDT9Vw"
+              },
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 08:51:14 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "60"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "application/json; charset=UTF-8": "\"Credential mismatch!\""
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 08:49:35 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "23"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "summary": "GET PRODUCTS",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "GETPRODUCTS",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "default": "",
+              "items": {
+                "$ref": "#/definitions/GETPRODUCTSSUCCESS"
+              }
+            },
+            "examples": {
+              "application/json; charset=UTF-8": [
+                {
+                  "name": "Probiotik A",
+                  "category": "Suplemen",
+                  "price": 20000,
+                  "image": "probiotikA_1.jpg"
+                },
+                {
+                  "name": "Probiotik B",
+                  "category": "Suplemen",
+                  "price": 50000,
+                  "image": "probiotikA_2.jpg"
+                },
+                {
+                  "name": "Probiotik C",
+                  "category": "Suplemen",
+                  "price": 100000,
+                  "image": "probiotikB_1.jpg"
+                },
+                {
+                  "name": "Pakan Lele",
+                  "category": "Pakan",
+                  "price": 30000,
+                  "image": "probiotikB_2.jpg"
+                },
+                {
+                  "name": "Pakan Salmon",
+                  "category": "Pakan",
+                  "price": 30000,
+                  "image": "probiotikC_1.jpg"
+                }
+              ]
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 08:55:29 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "427"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/product/{product_id}": {
+      "get": {
+        "summary": "GET PRODUCT DETAIL",
+        "tags": [
+          "Product"
+        ],
+        "operationId": "GETPRODUCTDETAIL",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=UTF-8",
+          "text/plain; charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "product_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GETPRODUCTDETAILSUCCESS"
+            },
+            "examples": {
+              "application/json; charset=UTF-8": {
+                "name": "Probiotik B",
+                "category": "Suplemen",
+                "price": 50000,
+                "images": [
+                  {
+                    "id": 3,
+                    "image": "probiotikB_1.jpg"
+                  },
+                  {
+                    "id": 4,
+                    "image": "probiotikB_2.jpg"
+                  }
+                ],
+                "unit": "kg",
+                "description": {
+                  "Principal": "eFishery",
+                  "Usage": "Feed fish"
+                }
+              }
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 08:56:27 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "213"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "text/plain; charset=UTF-8": "Failed to retrieve products"
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 08:56:52 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "27"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cart": {
+      "post": {
+        "summary": "POST INSERT CART",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "POSTINSERTCART",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=UTF-8",
+          "text/plain; charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/POSTINSERTCARTREQUEST"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/POSTINSERTCARTSUCCESS"
+            },
+            "examples": {
+              "application/json; charset=UTF-8": {
+                "ID": 9,
+                "CreatedAt": "2022-09-09T15:57:57.1309255+07:00",
+                "UpdatedAt": "2022-09-09T15:57:57.1309255+07:00",
+                "DeletedAt": null,
+                "user_id": 5,
+                "product_id": 6,
+                "quantity": 5
+              }
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 08:57:57 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "162"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "application/json; charset=UTF-8": "\"Such product unavailable\""
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:02:48 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "27"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "text/plain; charset=UTF-8": "Unauthorized"
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:05:34 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "12"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "GET USER'S CART",
+        "tags": [
+          "Cart"
+        ],
+        "operationId": "GETUSER'SCART",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=UTF-8",
+          "text/plain; charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "default": "",
+              "items": {
+                "$ref": "#/definitions/GETUSER%27SCARTSUCCESS"
+              }
+            },
+            "examples": {
+              "application/json; charset=UTF-8": [
+                {
+                  "ID": 9,
+                  "CreatedAt": "2022-09-09T15:57:57.130925+07:00",
+                  "UpdatedAt": "2022-09-09T15:57:57.130925+07:00",
+                  "DeletedAt": null,
+                  "user_id": 5,
+                  "product_id": 6,
+                  "quantity": 5
+                }
+              ]
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:04:13 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "162"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "text/plain; charset=UTF-8": "Unauthorized"
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:06:37 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "12"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction": {
+      "post": {
+        "summary": "POST INSERT TO TRANSACTION (PAYMENT)",
+        "tags": [
+          "Transaction"
+        ],
+        "operationId": "POSTINSERTTOTRANSACTION(PAYMENT)",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=UTF-8",
+          "text/plain; charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/POSTINSERTTOTRANSACTION%28PAYMENT%29SUCCESS"
+            },
+            "examples": {
+              "application/json; charset=UTF-8": {
+                "ID": 7,
+                "CreatedAt": "2022-09-09T16:08:41.2297736+07:00",
+                "UpdatedAt": "2022-09-09T16:08:41.2297736+07:00",
+                "DeletedAt": null,
+                "user_id": 5,
+                "payment_slip": "",
+                "total_price": 300000,
+                "status": "MENUNGGU_PEMBAYARAN"
+              }
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:08:41 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "204"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "text/plain; charset=UTF-8": "Unauthorized"
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:09:09 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "12"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transaction/paymentslip/{transaction_id}": {
+      "post": {
+        "summary": "POST UPLOAD PAYMENT SLIP",
+        "tags": [
+          "Transaction"
+        ],
+        "operationId": "POSTUPLOADPAYMENTSLIP",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=UTF-8",
+          "text/plain; charset=UTF-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "payment_slip",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/POSTUPLOADPAYMENTSLIPSUCCESS"
+            },
+            "examples": {
+              "application/json; charset=UTF-8": {
+                "ID": 7,
+                "CreatedAt": "2022-09-09T16:08:41.229773+07:00",
+                "UpdatedAt": "2022-09-09T16:12:31.264949+07:00",
+                "DeletedAt": null,
+                "user_id": 5,
+                "payment_slip": "Bukti_pembayaran.jpg",
+                "total_price": 300000,
+                "status": "DIBAYAR"
+              }
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:12:31 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "210"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "text/plain; charset=UTF-8": "Unauthorized"
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:12:15 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "12"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/POSTUPLOADPAYMENTSLIPERROR1"
+            },
+            "examples": {
+              "application/json; charset=UTF-8": {
+                "message": "Internal Server Error"
+              }
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:11:40 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "36"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions": {
+      "get": {
+        "summary": "GET USER'S TRANSACTIONS",
+        "tags": [
+          "Transaction"
+        ],
+        "operationId": "GETUSER'STRANSACTIONS",
+        "deprecated": false,
+        "produces": [
+          "text/plain; charset=UTF-8",
+          "application/json; charset=UTF-8"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "default": "",
+              "items": {
+                "$ref": "#/definitions/GETUSER%27STRANSACTIONSSUCCESS"
+              }
+            },
+            "examples": {
+              "application/json; charset=UTF-8": [
+                {
+                  "ID": 7,
+                  "CreatedAt": "2022-09-09T16:08:41.229773+07:00",
+                  "UpdatedAt": "2022-09-09T16:12:31.264949+07:00",
+                  "DeletedAt": null,
+                  "user_id": 5,
+                  "payment_slip": "Bukti_pembayaran.jpg",
+                  "total_price": 300000,
+                  "status": "DIBAYAR"
+                }
+              ]
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:13:22 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "212"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "string",
+              "default": ""
+            },
+            "examples": {
+              "text/plain; charset=UTF-8": "Unauthorized"
+            },
+            "headers": {
+              "Date": {
+                "type": "string",
+                "default": "Fri, 09 Sep 2022 09:12:57 GMT"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "12"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "POSTREGISTERREQUEST": {
+      "title": "REGISTER REQUEST",
+      "example": {
+        "username": "ozzyosbourne",
+        "email": "ozzy@gmail.com",
+        "password": "12345"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "email",
+        "password"
+      ]
+    },
+    "POSTSUCCESS": {
+      "title": "REGISTER SUCCESS",
+      "example": {
+        "id": 5,
+        "username": "ozzyosbourne",
+        "email": "ozzy@gmail.com"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "email"
+      ]
+    },
+    "POSTLOGINREQUEST": {
+      "title": "LOGIN REQUEST",
+      "example": {
+        "username": "ozzyosbourne",
+        "email": "ozzy@gmail.com",
+        "password": "12345"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "email",
+        "password"
+      ]
+    },
+    "LOGINSUCCESS": {
+      "title": "LOGIN SUCCESS",
+      "example": {
+        "id": 5,
+        "username": "ozzyosbourne",
+        "email": "ozzy@gmail.com"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "username",
+        "email"
+      ]
+    },
+    "GETPRODUCTSSUCCESS": {
+      "title": "GET PRODUCTS SUCCESS",
+      "example": {
+        "name": "Probiotik A",
+        "category": "Suplemen",
+        "price": 20000,
+        "image": "probiotikA_1.jpg"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "category",
+        "price",
+        "image"
+      ]
+    },
+    "GETPRODUCTDETAILSUCCESS": {
+      "title": "GET PRODUCT DETAIL SUCCESS",
+      "example": {
+        "name": "Probiotik B",
+        "category": "Suplemen",
+        "price": 50000,
+        "images": [
+          {
+            "id": 3,
+            "image": "probiotikB_1.jpg"
+          },
+          {
+            "id": 4,
+            "image": "probiotikB_2.jpg"
+          }
+        ],
+        "unit": "kg",
+        "description": {
+          "Principal": "eFishery",
+          "Usage": "Feed fish"
+        }
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Image"
+          }
+        },
+        "unit": {
+          "type": "string"
+        },
+        "description": {
+          "$ref": "#/definitions/Description"
+        }
+      },
+      "required": [
+        "name",
+        "category",
+        "price",
+        "images",
+        "unit",
+        "description"
+      ]
+    },
+    "Image": {
+      "title": "Image",
+      "example": {
+        "id": 3,
+        "image": "probiotikB_1.jpg"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "image"
+      ]
+    },
+    "Description": {
+      "title": "Description",
+      "example": {
+        "Principal": "eFishery",
+        "Usage": "Feed fish"
+      },
+      "type": "object",
+      "properties": {
+        "Principal": {
+          "type": "string"
+        },
+        "Usage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Principal",
+        "Usage"
+      ]
+    },
+    "POSTINSERTCARTREQUEST": {
+      "title": "INSERT CART REQUEST",
+      "example": {
+        "product_id": 6,
+        "quantity": 5
+      },
+      "type": "object",
+      "properties": {
+        "product_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "product_id",
+        "quantity"
+      ]
+    },
+    "POSTINSERTCARTSUCCESS": {
+      "title": "INSERT CART SUCCESS",
+      "example": {
+        "ID": 9,
+        "CreatedAt": "2022-09-09T15:57:57.1309255+07:00",
+        "UpdatedAt": "2022-09-09T15:57:57.1309255+07:00",
+        "DeletedAt": null,
+        "user_id": 5,
+        "product_id": 6,
+        "quantity": 5
+      },
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CreatedAt": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "type": "string"
+        },
+        "DeletedAt": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "ID",
+        "CreatedAt",
+        "UpdatedAt",
+        "DeletedAt",
+        "user_id",
+        "product_id",
+        "quantity"
+      ]
+    },
+    "GETUSER'SCARTSUCCESS": {
+      "title": "GET USER'S CART SUCCESS",
+      "example": {
+        "ID": 9,
+        "CreatedAt": "2022-09-09T15:57:57.130925+07:00",
+        "UpdatedAt": "2022-09-09T15:57:57.130925+07:00",
+        "DeletedAt": null,
+        "user_id": 5,
+        "product_id": 6,
+        "quantity": 5
+      },
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CreatedAt": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "type": "string"
+        },
+        "DeletedAt": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "product_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "ID",
+        "CreatedAt",
+        "UpdatedAt",
+        "DeletedAt",
+        "user_id",
+        "product_id",
+        "quantity"
+      ]
+    },
+    "POSTINSERTTOTRANSACTION(PAYMENT)SUCCESS": {
+      "title": "INSERT TO TRANSACTION (PAYMENT) SUCCESS",
+      "example": {
+        "ID": 7,
+        "CreatedAt": "2022-09-09T16:08:41.2297736+07:00",
+        "UpdatedAt": "2022-09-09T16:08:41.2297736+07:00",
+        "DeletedAt": null,
+        "user_id": 5,
+        "payment_slip": "",
+        "total_price": 300000,
+        "status": "MENUNGGU_PEMBAYARAN"
+      },
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CreatedAt": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "type": "string"
+        },
+        "DeletedAt": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "payment_slip": {
+          "type": "string"
+        },
+        "total_price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ID",
+        "CreatedAt",
+        "UpdatedAt",
+        "DeletedAt",
+        "user_id",
+        "payment_slip",
+        "total_price",
+        "status"
+      ]
+    },
+    "POSTUPLOADPAYMENTSLIPERROR1": {
+      "title": "UPLOAD PAYMENT SLIP ERROR",
+      "example": {
+        "message": "Internal Server Error"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "POSTUPLOADPAYMENTSLIPSUCCESS": {
+      "title": "UPLOAD PAYMENT SLIP SUCCESS",
+      "example": {
+        "ID": 7,
+        "CreatedAt": "2022-09-09T16:08:41.229773+07:00",
+        "UpdatedAt": "2022-09-09T16:12:31.264949+07:00",
+        "DeletedAt": null,
+        "user_id": 5,
+        "payment_slip": "Bukti_pembayaran.jpg",
+        "total_price": 300000,
+        "status": "DIBAYAR"
+      },
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CreatedAt": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "type": "string"
+        },
+        "DeletedAt": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "payment_slip": {
+          "type": "string"
+        },
+        "total_price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ID",
+        "CreatedAt",
+        "UpdatedAt",
+        "DeletedAt",
+        "user_id",
+        "payment_slip",
+        "total_price",
+        "status"
+      ]
+    },
+    "GETUSER'STRANSACTIONSSUCCESS": {
+      "title": "GET USER'S TRANSACTIONS SUCCESS",
+      "example": {
+        "ID": 7,
+        "CreatedAt": "2022-09-09T16:08:41.229773+07:00",
+        "UpdatedAt": "2022-09-09T16:12:31.264949+07:00",
+        "DeletedAt": null,
+        "user_id": 5,
+        "payment_slip": "Bukti_pembayaran.jpg",
+        "total_price": 300000,
+        "status": "DIBAYAR"
+      },
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "CreatedAt": {
+          "type": "string"
+        },
+        "UpdatedAt": {
+          "type": "string"
+        },
+        "DeletedAt": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "payment_slip": {
+          "type": "string"
+        },
+        "total_price": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ID",
+        "CreatedAt",
+        "UpdatedAt",
+        "DeletedAt",
+        "user_id",
+        "payment_slip",
+        "total_price",
+        "status"
+      ]
+    }
+  }
+}

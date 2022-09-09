@@ -9,7 +9,7 @@ import (
 )
 
 type RepositoryUser interface {
-	CreateUser(user entities.User) (entities.User, error)
+	CreateUser(user entities.User) (entities.UserResponse, error)
 	FindEmail(email string) (entities.User, error)
 	GetUserById(id int) (entities.User, error)
 }
@@ -22,19 +22,21 @@ func NewRepositoryUser(db *gorm.DB) *Repository_User {
 	return &Repository_User{db}
 }
 
-func (r *Repository_User) CreateUser(user entities.User) (entities.User, error) {
+func (r *Repository_User) CreateUser(user entities.User) (entities.UserResponse, error) {
 	newUser := entities.User{user.Model, user.Username, user.Email, user.Password}
 
 	result := r.db.Create(&newUser)
 
 	err := result.Error
 
+	userResponse := entities.UserResponse{newUser.ID, newUser.Username, newUser.Email}
+
 	if err != nil {
 		log.Panic("Error inserting new user")
-		return newUser, err
+		return userResponse, err
 	}
 
-	return newUser, nil
+	return userResponse, nil
 }
 
 func (r *Repository_User) FindEmail(email string) (entities.User, error) {

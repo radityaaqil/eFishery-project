@@ -9,8 +9,8 @@ import (
 )
 
 type ServiceUser interface {
-	CreateUserService(user entities.User) (entities.User, error)
-	LoginService(user entities.User) (entities.User, error)
+	CreateUserService(user entities.User) (entities.UserResponse, error)
+	LoginService(user entities.User) (entities.UserResponse, error)
 	GetUserByIdService(id int) (entities.User, error)
 }
 
@@ -22,13 +22,13 @@ func NewServiceUser(repositoryuser repository.RepositoryUser) *Service_User {
 	return &Service_User{repositoryuser}
 }
 
-func (s *Service_User) CreateUserService(user entities.User) (entities.User, error) {
-	var createUser entities.User
+func (s *Service_User) CreateUserService(user entities.User) (entities.UserResponse, error) {
+	var userResponse entities.UserResponse
 
 	matchingEmail, errMatchingEmail := s.repositoryuser.FindEmail(user.Email)
 
 	if matchingEmail.Email == user.Email {
-		return user, fmt.Errorf("Please insert different email")
+		return userResponse, fmt.Errorf("Please insert different email")
 	}
 
 	if errMatchingEmail != nil && matchingEmail.ID == 0 {
@@ -39,7 +39,7 @@ func (s *Service_User) CreateUserService(user entities.User) (entities.User, err
 
 		if err != nil {
 			log.Panic("Failed to hash password")
-			return user, err
+			return userResponse, err
 		}
 
 		createUser, errCreateUser := s.repositoryuser.CreateUser(user)
@@ -50,24 +50,27 @@ func (s *Service_User) CreateUserService(user entities.User) (entities.User, err
 		}
 		return createUser, nil
 	}
-	return createUser, nil
+	return userResponse, nil
 }
 
-func (s *Service_User) LoginService(user entities.User) (entities.User, error) {
+func (s *Service_User) LoginService(user entities.User) (entities.UserResponse, error) {
+	var userResponse entities.UserResponse
 
 	loginUser, errLoginUser := s.repositoryuser.FindEmail(user.Email)
 
+	userResponse = entities.UserResponse{loginUser.ID, loginUser.Username, loginUser.Email}
+
 	if errLoginUser != nil {
-		return user, errLoginUser
+		return userResponse, errLoginUser
 	}
 
 	comparePassword := helper.ComparePassword([]byte(loginUser.Password), []byte(user.Password))
 
 	if comparePassword != nil {
-		return user, fmt.Errorf("Credential mismatch!")
+		return userResponse, fmt.Errorf("Credential mismatch!")
 	}
 
-	return loginUser, nil
+	return userResponse, nil
 }
 
 func (s *Service_User) GetUserByIdService(id int) (entities.User, error) {

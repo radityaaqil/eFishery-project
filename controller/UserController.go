@@ -57,7 +57,7 @@ func (cu *Controller_User) LoginController(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, errLogin.Error())
 	}
 
-	token, errToken := cu.authservice.GenerateToken(int(login.ID))
+	token, errToken := cu.authservice.GenerateToken(int(login.Id))
 
 	if errToken != nil {
 		log.Println(token)

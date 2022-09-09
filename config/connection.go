@@ -54,7 +54,7 @@ func NewConnection(configdb *ConfigDB) (*gorm.DB, error) {
 		return db, err
 	}
 
-	db.AutoMigrate(&entities.User{})
+	db.AutoMigrate(&entities.User{}, &entities.Product{}, &entities.ProductImages{}, &entities.Cart{}, &entities.Transaction{}, &entities.Transaction_Detail{})
 
 	return db, nil
 }

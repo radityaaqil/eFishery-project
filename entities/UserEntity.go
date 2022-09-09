@@ -11,9 +11,8 @@ type User struct {
 	Password string `json:"password"`
 }
 
-// type User struct {
-// 	gorm.Model
-// 	Username string `gorm:"column:username" json:"username"`
-// 	Email    string `gorm:"column:email" json:"email"`
-// 	Password string `gorm:"column:password" json:"password"`
-// }
+type UserResponse struct {
+	Id       uint   `json:"id"`
+	Username string `json:"username"`
+	Email    string `json:"email"`
+}
